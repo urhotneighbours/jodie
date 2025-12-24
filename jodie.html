@@ -1,0 +1,1313 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Error 404</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            min-height: 100vh;
+        }
+        
+        .error-page {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .error-content {
+            text-align: center;
+            max-width: 600px;
+        }
+        
+        h1 {
+            font-size: 72px;
+            color: #333;
+            margin-bottom: 20px;
+        }
+        
+        p {
+            font-size: 18px;
+            color: #666;
+            margin-bottom: 30px;
+        }
+        
+        .home-button {
+            display: inline-block;
+            padding: 12px 30px;
+            background-color: #007bff;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            font-size: 16px;
+        }
+        
+        .home-button:hover {
+            background-color: #0056b3;
+        }
+        
+        .spacer {
+            height: 150vh;
+        }
+        
+        .hidden-links {
+            padding: 40px;
+            text-align: center;
+            background-color: #fff;
+        }
+        
+        .hidden-links a {
+            display: inline-block;
+            margin: 10px 15px;
+            padding: 10px 20px;
+            color: #999;
+            text-decoration: none;
+            font-size: 12px;
+            border: 1px solid #eee;
+        }
+        
+        .hidden-links a:hover {
+            color: #333;
+            border-color: #ccc;
+        }
+        
+        .page {
+            display: none;
+            padding: 40px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+        
+        .page.active {
+            display: block;
+        }
+        
+        .input-group {
+            margin: 20px 0;
+        }
+        
+        .input-group label {
+            display: block;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        
+        .input-group input {
+            padding: 8px;
+            font-size: 14px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            width: 300px;
+            autocomplete: off;
+        }
+        
+        input[autocomplete="off"]::-webkit-contacts-auto-fill-button {
+            visibility: hidden;
+            display: none !important;
+            pointer-events: none;
+            position: absolute;
+            right: 0;
+        }
+        
+        table {
+            border-collapse: collapse;
+            margin: 20px 0;
+            background: white;
+        }
+        
+        td {
+            border: 1px solid #ccc;
+            padding: 8px 12px;
+            text-align: center;
+            min-width: 40px;
+        }
+        
+        td.axis {
+            background-color: #f0f0f0;
+            font-weight: bold;
+        }
+        
+        .message {
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 4px;
+        }
+        
+        .error {
+            background-color: #ffe6e6;
+            color: #cc0000;
+        }
+        
+        .success {
+            background-color: #e6ffe6;
+            color: #006600;
+        }
+        
+        button {
+            padding: 10px 20px;
+            margin: 10px 5px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+        }
+        
+        button:hover {
+            background-color: #0056b3;
+        }
+        
+        .help-button {
+            background-color: transparent;
+            border: none;
+            color: #666;
+            font-size: 10px;
+            padding: 4px 8px;
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+        }
+        
+        .help-button:hover {
+            background-color: transparent;
+            color: #333;
+        }
+        
+        .output-box {
+            padding: 10px;
+            margin: 10px 0;
+            background-color: #f9f9f9;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-family: monospace;
+            min-height: 30px;
+            word-break: break-all;
+        }
+        
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 1000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0,0,0,0.5);
+        }
+        
+        .modal-content {
+            background-color: white;
+            margin: 10% auto;
+            padding: 30px;
+            border-radius: 8px;
+            width: 80%;
+            max-width: 600px;
+        }
+        
+        .close {
+            color: #aaa;
+            float: right;
+            font-size: 28px;
+            font-weight: bold;
+            cursor: pointer;
+        }
+        
+        .close:hover {
+            color: #000;
+        }
+        
+        h3 {
+            margin-top: 20px;
+            color: #333;
+        }
+        
+        .table-container {
+            margin: 20px 0;
+            overflow-x: auto;
+        }
+    </style>
+</head>
+<body>
+    <div id="landing" class="page active">
+        <div class="error-page">
+            <div class="error-content">
+                <h1>404</h1>
+                <p>Page not found. Please return to homepage.</p>
+                <a href="#" class="home-button">Return to Homepage</a>
+            </div>
+        </div>
+        <div class="spacer"></div>
+        <div class="hidden-links">
+            <a href="#" onclick="showPage('garland'); return false;">garland</a>
+            <a href="#" onclick="showPage('mistletoe'); return false;">mistletoe</a>
+            <a href="#" onclick="showPage('bayberry'); return false;">bayberry</a>
+            <a href="#" onclick="showPage('luminaria'); return false;">luminaria</a>
+        </div>
+    </div>
+
+    <div id="garland" class="page">
+        <h2>Garland</h2>
+        <button onclick="showPage('landing')">Return to Menu</button>
+        
+        <div class="input-group">
+            <label for="bead">Bead:</label>
+            <input type="text" id="bead" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
+        </div>
+        
+        <div class="input-group">
+            <label for="angle">Angle:</label>
+            <input type="text" id="angle" autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false">
+        </div>
+        
+        <div id="output"></div>
+        <button id="helpButton" class="help-button" onclick="openQueryModal()" style="display:none;">help</button>
+    </div>
+
+    <div id="queryModal" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="closeQueryModal()">&times;</span>
+            <h3>Query</h3>
+            <div class="input-group">
+                <label>Enter: encrypted,bead,angle</label>
+                <input type="text" id="queryInput" style="width: 100%;" placeholder="LSHGUBHVHO,charlies,7" autocomplete="off">
+                <button onclick="decryptQuery()">Query</button>
+            </div>
+            <div class="input-group">
+                <label>Result:</label>
+                <div id="queryOutput" class="output-box"></div>
+            </div>
+        </div>
+    </div>
+
+    <div id="mistletoe" class="page">
+        <h2>Mistletoe</h2>
+        <button onclick="showPage('landing')">Return to Menu</button>
+        <p>Coming soon...</p>
+    </div>
+
+    <div id="bayberry" class="page">
+        <h2>Bayberry</h2>
+        <button onclick="showPage('landing')">Return to Menu</button>
+        
+        <div class="input-group">
+            <label for="reindeer">Reindeer:</label>
+            <input type="text" id="reindeer" autocomplete="off">
+        </div>
+        
+        <div id="bayberry-output"></div>
+    </div>
+
+    <div id="luminaria" class="page">
+        <h2>Luminaria</h2>
+        <button onclick="showPage('landing')">Return to Menu</button>
+        
+        <div class="input-group">
+            <label for="matches">Matches:</label>
+            <input type="text" id="matches" autocomplete="off">
+        </div>
+        
+        <div id="luminaria-output"></div>
+    </div>
+
+    <script>
+        // Prevent browser from saving form data
+        window.addEventListener('beforeunload', function() {
+            document.querySelectorAll('input').forEach(input => input.value = '');
+        });
+        
+        function showPage(pageId) {
+            // Clear all inputs and outputs when changing pages
+            document.querySelectorAll('input').forEach(input => input.value = '');
+            document.querySelectorAll('.output-box').forEach(box => box.textContent = '');
+            document.getElementById('output').innerHTML = '';
+            document.getElementById('helpButton').style.display = 'none';
+            
+            document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+            document.getElementById(pageId).classList.add('active');
+            if (pageId === 'landing') {
+                window.scrollTo(0, 0);
+            }
+        }
+
+        let currentMode = null;
+        let beadSizeMap = {};
+        let primeCutsMap = {};
+        let bowMap = {};
+        let paperBagsMap = {};
+        let constellationTable = [];
+
+        document.getElementById('bead').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                processBead();
+            }
+        });
+        
+        document.getElementById('matches').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                processMatches();
+            }
+        });
+        
+        document.getElementById('reindeer').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                processReindeer();
+            }
+        });
+
+        function processBead() {
+            const bead = document.getElementById('bead').value.toUpperCase();
+            const angle = document.getElementById('angle').value;
+            const output = document.getElementById('output');
+            output.innerHTML = '';
+            document.getElementById('helpButton').style.display = 'none';
+
+            const uniqueChars = new Set(bead.replace(/[^A-Z]/g, ''));
+            const uniqueCount = uniqueChars.size;
+
+            // Check if wreath mode (4-12 unique letters and numeric angle)
+            if (uniqueCount >= 4 && uniqueCount <= 12 && !isNaN(angle) && angle.trim() !== '' && parseInt(angle) !== 0) {
+                currentMode = 'wreath';
+                processWreath(bead, parseInt(angle));
+                return;
+            }
+
+            if (bead.length === 8 && uniqueCount === 8) {
+                currentMode = 'beadsize';
+                processBeadSize(bead, output);
+            } else {
+                currentMode = 'lamb';
+                processLamb(bead, output);
+            }
+        }
+
+        function processBeadSize(bead, output) {
+            const alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+            const beadLetters = bead.split('');
+            
+            const remaining = [];
+            for (let char of alphabet) {
+                if (!beadLetters.includes(char)) {
+                    remaining.push(char);
+                }
+            }
+            
+            let table = '<table>';
+            table += '<tr>';
+            table += '<td class="axis"></td>';
+            for (let i = 0; i <= 9; i++) {
+                const num = i === 0 ? 0 : 10 - i;
+                table += `<td class="axis">${num}</td>`;
+            }
+            table += '</tr>';
+            
+            table += '<tr>';
+            table += '<td class="axis"></td>';
+            for (let i = 0; i < 8; i++) {
+                table += `<td>${beadLetters[i]}</td>`;
+            }
+            table += '<td></td><td></td>';
+            table += '</tr>';
+            
+            table += '<tr>';
+            table += '<td class="axis">1</td>';
+            for (let i = 0; i < 10; i++) {
+                table += `<td>${remaining[i] || ''}</td>`;
+            }
+            table += '</tr>';
+            
+            table += '<tr>';
+            table += '<td class="axis">2</td>';
+            for (let i = 10; i < 18; i++) {
+                table += `<td>${remaining[i] || ''}</td>`;
+            }
+            table += '<td>/</td><td>.</td>';
+            table += '</tr>';
+            
+            table += '</table>';
+            output.innerHTML += table;
+            
+            beadSizeMap = {};
+            for (let i = 0; i < beadLetters.length; i++) {
+                const col = i === 0 ? 0 : 10 - i;
+                beadSizeMap[beadLetters[i]] = String(col);
+            }
+            
+            for (let i = 0; i < 10; i++) {
+                const col = i === 0 ? 0 : 10 - i;
+                beadSizeMap[remaining[i]] = '1' + col;
+            }
+            
+            for (let i = 10; i < 18; i++) {
+                const col = i - 10 === 0 ? 0 : 10 - (i - 10);
+                beadSizeMap[remaining[i]] = '2' + col;
+            }
+            
+            beadSizeMap['/'] = '29';
+            beadSizeMap['.'] = '28';
+            
+            let sizeTable = '<h3>Bead Size</h3><table>';
+            const alphabetArr = alphabet.split('');
+            let idx = 0;
+            for (let row = 0; row < 3; row++) {
+                sizeTable += '<tr>';
+                for (let col = 0; col < 9; col++) {
+                    if (idx < 26) {
+                        const letter = alphabetArr[idx];
+                        const code = beadSizeMap[letter];
+                        sizeTable += `<td>${letter}: ${code}</td>`;
+                        idx++;
+                    }
+                }
+                sizeTable += '</tr>';
+            }
+            // Add special characters row
+            sizeTable += '<tr>';
+            sizeTable += `<td>/: ${beadSizeMap['/']}</td>`;
+            sizeTable += `<td>.: ${beadSizeMap['.']}</td>`;
+            sizeTable += '<td></td><td></td><td></td><td></td><td></td><td></td><td></td>';
+            sizeTable += '</tr>';
+            sizeTable += '</table>';
+            output.innerHTML += sizeTable;
+            
+            output.innerHTML += `
+                <div class="input-group">
+                    <label for="dough">Dough:</label>
+                    <input type="text" id="dough" autocomplete="off">
+                    <button onclick="bake()">Bake</button>
+                </div>
+                <div class="input-group">
+                    <label>Bread:</label>
+                    <div id="bread" class="output-box"></div>
+                </div>
+            `;
+            
+            document.getElementById('dough').addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    bake();
+                }
+            });
+        }
+
+        function bake() {
+            const dough = document.getElementById('dough').value.toUpperCase();
+            
+            let cleaned = '';
+            for (let char of dough) {
+                if (/[A-Z]/.test(char)) {
+                    cleaned += char;
+                } else if (char === '.') {
+                    cleaned += '.';
+                } else if (/[^\w\s.]/.test(char) || char === ' ') {
+                    cleaned += '/';
+                }
+            }
+            
+            cleaned = cleaned.replace(/\/+/g, '/');
+            
+            let result = '';
+            for (let char of cleaned) {
+                if (beadSizeMap[char]) {
+                    result += beadSizeMap[char];
+                }
+            }
+            
+            document.getElementById('bread').textContent = result;
+        }
+
+        function processLamb(bead, output) {
+            const tongue = bead.toUpperCase().replace(/U/g, 'V');
+            const alphabet = 'ABCDEFGHIJKLMNOPQRSTVWXYZ';
+            
+            const uniqueChars = [];
+            for (let char of tongue) {
+                if (/[A-Z]/.test(char) && !uniqueChars.includes(char)) {
+                    uniqueChars.push(char);
+                }
+            }
+            
+            const remaining = [];
+            for (let char of alphabet) {
+                if (!uniqueChars.includes(char)) {
+                    remaining.push(char);
+                }
+            }
+            
+            const grid = [...uniqueChars, ...remaining];
+            
+            let table = '<h3>Prime Cuts (25 Grid)</h3><table>';
+            table += '<tr><td class="axis"></td>';
+            for (let i = 1; i <= 5; i++) {
+                table += `<td class="axis">${i}</td>`;
+            }
+            table += '</tr>';
+            
+            for (let row = 1; row <= 5; row++) {
+                table += `<tr><td class="axis">${row}</td>`;
+                for (let col = 1; col <= 5; col++) {
+                    const idx = (row - 1) * 5 + (col - 1);
+                    table += `<td>${grid[idx] || ''}</td>`;
+                }
+                table += '</tr>';
+            }
+            table += '</table>';
+            output.innerHTML += table;
+            
+            primeCutsMap = {};
+            for (let row = 1; row <= 5; row++) {
+                for (let col = 1; col <= 5; col++) {
+                    const idx = (row - 1) * 5 + (col - 1);
+                    if (grid[idx]) {
+                        primeCutsMap[grid[idx]] = String(row) + String(col);
+                    }
+                }
+            }
+            
+            const angle = document.getElementById('angle').value;
+            const hasAngle = angle && angle.trim() !== '';
+            
+            output.innerHTML += `
+                <div class="input-group">
+                    <label for="calf">Calf:</label>
+                    <input type="text" id="calf" autocomplete="off">
+                    <button onclick="chop(${hasAngle})">Chop</button>
+                </div>
+                <div id="veal-output"></div>
+            `;
+            
+            document.getElementById('calf').addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    chop(hasAngle);
+                }
+            });
+        }
+
+        function chop(hasAngle) {
+            const calf = document.getElementById('calf').value.toUpperCase();
+            const bleater = calf.replace(/[^A-Z]/g, '').replace(/U/g, 'V');
+            
+            let vealTable = '<h3>Veal</h3><table>';
+            vealTable += '<tr>';
+            for (let char of bleater) {
+                vealTable += `<td>${char}</td>`;
+            }
+            vealTable += '</tr>';
+            
+            vealTable += '<tr>';
+            for (let char of bleater) {
+                vealTable += `<td>${primeCutsMap[char] || '??'}</td>`;
+            }
+            vealTable += '</tr>';
+            
+            if (hasAngle) {
+                const angle = document.getElementById('angle').value;
+                const convertedAngle = angle.toUpperCase().replace(/[^A-Z]/g, '').replace(/U/g, 'V');
+                const angleCoords = [];
+                for (let char of convertedAngle) {
+                    angleCoords.push(primeCutsMap[char] || '00');
+                }
+                
+                vealTable += '<tr>';
+                for (let i = 0; i < bleater.length; i++) {
+                    const coord = angleCoords[i % angleCoords.length];
+                    vealTable += `<td>${coord}</td>`;
+                }
+                vealTable += '</tr>';
+                
+                vealTable += '<tr>';
+                for (let i = 0; i < bleater.length; i++) {
+                    const bleaterVal = parseInt(primeCutsMap[bleater[i]] || '0');
+                    const angleVal = parseInt(angleCoords[i % angleCoords.length]);
+                    const sum = bleaterVal + angleVal;
+                    vealTable += `<td>${sum}</td>`;
+                }
+                vealTable += '</tr>';
+            }
+            
+            vealTable += '</table>';
+            document.getElementById('veal-output').innerHTML = vealTable;
+        }
+
+        document.getElementById('angle').addEventListener('keypress', function(e) {
+            if (e.key === 'Enter') {
+                const angle = this.value;
+                const bead = document.getElementById('bead').value.toUpperCase();
+                
+                if (!isNaN(angle) && angle.trim() !== '' && bead.length === 8) {
+                    const uniqueChars = new Set(bead);
+                    if (uniqueChars.size === 8) {
+                        processWreath(bead, parseInt(angle));
+                    }
+                }
+            }
+        });
+
+        function processWreath(bead, angleNum) {
+            const output = document.getElementById('output');
+            document.getElementById('helpButton').style.display = 'block';
+            
+            const alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+            const beadLetters = [];
+            for (let char of bead.toUpperCase()) {
+                if (/[A-Z]/.test(char) && !beadLetters.includes(char)) {
+                    beadLetters.push(char);
+                }
+            }
+            
+            const remaining = [];
+            for (let char of alphabet) {
+                if (!beadLetters.includes(char)) {
+                    remaining.push(char);
+                }
+            }
+            
+            const allLetters = [...beadLetters, ...remaining];
+            
+            let table = '<h3>Bow</h3><table>';
+            table += '<tr><td class="axis"></td>';
+            for (let i = 1; i <= 10; i++) {
+                const colLabel = i === 10 ? 0 : i;
+                table += `<td class="axis">${colLabel}</td>`;
+            }
+            table += '</tr>';
+            
+            bowMap = {};
+            let letterIdx = 0;
+            
+            for (let row = 1; row <= 3; row++) {
+                table += `<tr><td class="axis">${row}</td>`;
+                for (let col = 1; col <= 10; col++) {
+                    const mapCol = col === 10 ? 0 : col;
+                    if (col === 10) {
+                        let special = '';
+                        if (row === 1) special = '.';
+                        else if (row === 2) special = '&';
+                        else if (row === 3) special = ' ';
+                        table += `<td>${special}</td>`;
+                        bowMap[special] = String(row) + String(mapCol);
+                    } else {
+                        if (letterIdx < allLetters.length) {
+                            table += `<td>${allLetters[letterIdx]}</td>`;
+                            bowMap[allLetters[letterIdx]] = String(row) + String(mapCol);
+                            letterIdx++;
+                        } else {
+                            if (row === 3 && col === 9) {
+                                table += `<td>/</td>`;
+                                bowMap['/'] = String(row) + String(mapCol);
+                            } else {
+                                table += `<td></td>`;
+                            }
+                        }
+                    }
+                }
+                table += '</tr>';
+            }
+            table += '</table>';
+            output.innerHTML += table;
+            
+            output.innerHTML += `
+                <div class="input-group">
+                    <label for="pinecones">Pinecones:</label>
+                    <input type="text" id="pinecones" autocomplete="off">
+                    <button onclick="decorate(${angleNum})">Decorate</button>
+                </div>
+                <div id="holly-output"></div>
+            `;
+            
+            document.getElementById('pinecones').addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    decorate(angleNum);
+                }
+            });
+        }
+
+        function decorate(angleNum) {
+            const pinecones = document.getElementById('pinecones').value.toUpperCase();
+            
+            let needles = '';
+            for (let char of pinecones) {
+                if (/[A-Z]/.test(char) || char === '.' || char === '&' || char === '/' || char === ' ') {
+                    needles += char;
+                }
+            }
+            
+            const hollyOutput = document.getElementById('holly-output');
+            
+            let hollyTable = '<table>';
+            hollyTable += '<tr>';
+            for (let char of needles) {
+                hollyTable += `<td>${char}</td>`;
+            }
+            hollyTable += '</tr>';
+            
+            hollyTable += '<tr>';
+            const rowCoords = [];
+            for (let char of needles) {
+                const coord = bowMap[char] || '00';
+                const row = coord[0];
+                rowCoords.push(row);
+                hollyTable += `<td>${row}</td>`;
+            }
+            hollyTable += '</tr>';
+            
+            hollyTable += '<tr>';
+            const colCoords = [];
+            for (let char of needles) {
+                const coord = bowMap[char] || '00';
+                const col = coord[1];
+                colCoords.push(col);
+                hollyTable += `<td>${col}</td>`;
+            }
+            hollyTable += '</tr>';
+            
+            const combinedCols = colCoords.join('');
+            hollyTable += '<tr>';
+            hollyTable += `<td colspan="${needles.length}">${combinedCols}</td>`;
+            hollyTable += '</tr>';
+            
+            const product = BigInt(combinedCols) * BigInt(angleNum);
+            hollyTable += '<tr>';
+            hollyTable += `<td colspan="${needles.length}">${product}</td>`;
+            hollyTable += '</tr>';
+            
+            hollyTable += '</table>';
+            hollyOutput.innerHTML = hollyTable;
+            
+            const productStr = product.toString();
+            const needsExtraCol = productStr.length > needles.length;
+            
+            let workTable = '<table>';
+            
+            if (needsExtraCol) {
+                workTable += '<tr><td>1</td>';
+                for (let row of rowCoords) {
+                    workTable += `<td>${row}</td>`;
+                }
+                workTable += '</tr>';
+                
+                workTable += '<tr>';
+                for (let i = 0; i < productStr.length; i++) {
+                    workTable += `<td>${productStr[i]}</td>`;
+                }
+                workTable += '</tr>';
+                
+                workTable += '<tr>';
+                for (let i = 0; i < productStr.length; i++) {
+                    const row = i === 0 ? '1' : rowCoords[i - 1];
+                    const col = productStr[i];
+                    workTable += `<td>${row}${col}</td>`;
+                }
+                workTable += '</tr>';
+                
+                workTable += '<tr>';
+                let result = '';
+                for (let i = 0; i < productStr.length; i++) {
+                    const row = i === 0 ? '1' : rowCoords[i - 1];
+                    const col = productStr[i];
+                    const coord = row + col;
+                    
+                    let foundChar = '?';
+                    for (let [char, c] of Object.entries(bowMap)) {
+                        if (c === coord) {
+                            foundChar = char;
+                            break;
+                        }
+                    }
+                    workTable += `<td>${foundChar}</td>`;
+                    result += foundChar;
+                }
+                workTable += '</tr>';
+                
+                workTable += '</table>';
+                hollyOutput.innerHTML += workTable;
+                
+                hollyOutput.innerHTML += `<div class="output-box">${result}</div>`;
+            } else {
+                workTable += '<tr>';
+                for (let row of rowCoords) {
+                    workTable += `<td>${row}</td>`;
+                }
+                workTable += '</tr>';
+                
+                workTable += '<tr>';
+                for (let digit of productStr) {
+                    workTable += `<td>${digit}</td>`;
+                }
+                workTable += '</tr>';
+                
+                workTable += '<tr>';
+                for (let i = 0; i < productStr.length; i++) {
+                    workTable += `<td>${rowCoords[i]}${productStr[i]}</td>`;
+                }
+                workTable += '</tr>';
+                
+                workTable += '<tr>';
+                let result = '';
+                for (let i = 0; i < productStr.length; i++) {
+                    const coord = rowCoords[i] + productStr[i];
+                    
+                    let foundChar = '?';
+                    for (let [char, c] of Object.entries(bowMap)) {
+                        if (c === coord) {
+                            foundChar = char;
+                            break;
+                        }
+                    }
+                    workTable += `<td>${foundChar}</td>`;
+                    result += foundChar;
+                }
+                workTable += '</tr>';
+                
+                workTable += '</table>';
+                hollyOutput.innerHTML += workTable;
+                
+                hollyOutput.innerHTML += `<div class="output-box">${result}</div>`;
+            }
+        }
+
+        function openQueryModal() {
+            document.getElementById('queryModal').style.display = 'block';
+        }
+
+        function closeQueryModal() {
+            document.getElementById('queryModal').style.display = 'none';
+            document.getElementById('queryInput').value = '';
+            document.getElementById('queryOutput').textContent = '';
+        }
+
+        function decryptQuery() {
+            const input = document.getElementById('queryInput').value;
+            const parts = input.split(',');
+            
+            if (parts.length !== 3) {
+                document.getElementById('queryOutput').textContent = 'Error: Format should be encrypted,bead,angle';
+                return;
+            }
+            
+            const encrypted = parts[0].trim().toUpperCase();
+            const bead = parts[1].trim().toUpperCase();
+            const angleNum = parseInt(parts[2].trim());
+            
+            const beadLetters = [];
+            for (let char of bead) {
+                if (/[A-Z]/.test(char) && !beadLetters.includes(char)) {
+                    beadLetters.push(char);
+                }
+            }
+            
+            if (beadLetters.length < 4 || beadLetters.length > 12) {
+                document.getElementById('queryOutput').textContent = 'Error: Bead must have 4-12 unique characters';
+                return;
+            }
+            
+            if (isNaN(angleNum) || angleNum === 0) {
+                document.getElementById('queryOutput').textContent = 'Error: Angle must be a non-zero number';
+                return;
+            }
+            
+            const alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+            const remaining = [];
+            for (let char of alphabet) {
+                if (!beadLetters.includes(char)) {
+                    remaining.push(char);
+                }
+            }
+            const allLetters = [...beadLetters, ...remaining];
+            
+            const reverseBowMap = {};
+            let letterIdx = 0;
+            for (let row = 1; row <= 3; row++) {
+                for (let col = 1; col <= 10; col++) {
+                    const mapCol = col === 10 ? 0 : col;
+                    const coord = String(row) + String(mapCol);
+                    
+                    if (col === 10) {
+                        if (row === 1) reverseBowMap[coord] = '.';
+                        else if (row === 2) reverseBowMap[coord] = '&';
+                        else if (row === 3) reverseBowMap[coord] = ' ';
+                    } else {
+                        if (letterIdx < allLetters.length) {
+                            reverseBowMap[coord] = allLetters[letterIdx];
+                            letterIdx++;
+                        } else if (row === 3 && col === 9) {
+                            reverseBowMap[coord] = '/';
+                        }
+                    }
+                }
+            }
+            
+            // Build reverse lookup
+            const charToCoord = {};
+            for (let [coord, char] of Object.entries(reverseBowMap)) {
+                charToCoord[char] = coord;
+            }
+            
+            // Extract row coordinates from encrypted message
+            const rowCoords = [];
+            for (let char of encrypted) {
+                const coord = charToCoord[char];
+                if (!coord) {
+                    document.getElementById('queryOutput').textContent = 'Error: Character not in cipher: ' + char;
+                    return;
+                }
+                rowCoords.push(coord[0]);
+            }
+            
+            // Determine if we need extra column
+            const needsExtraCol = encrypted.length > 0;
+            let productStr;
+            
+            // Try to find the original column string by testing division
+            // We need to reverse: product = originalCols * angle
+            // So: originalCols = product / angle
+            
+            // Build the product from the encrypted text
+            let testProduct = '';
+            for (let char of encrypted) {
+                const coord = charToCoord[char];
+                testProduct += coord[1];
+            }
+            
+            // The product in encryption is: combinedOriginalCols * angle
+            // We have the encrypted result, need to find combinedOriginalCols
+            
+            // Actually, we need to reverse engineer from the encrypted coordinates
+            // The encrypted message gives us the final row+newCol coordinates
+            // We need to extract newCol (which is each digit of product)
+            // Then divide by angle to get original cols
+            
+            let newColDigits = '';
+            for (let char of encrypted) {
+                const coord = charToCoord[char];
+                newColDigits += coord[1];
+            }
+            
+            const productBig = BigInt(newColDigits);
+            const originalColsBig = productBig / BigInt(angleNum);
+            const originalCols = originalColsBig.toString();
+            
+            // Now reconstruct the original message
+            let decrypted = '';
+            let colIdx = 0;
+            
+            for (let i = 0; i < rowCoords.length; i++) {
+                const row = rowCoords[i];
+                
+                // Handle extra column case
+                if (newColDigits.length > originalCols.length && i === 0) {
+                    // First position was added as '1' in row coords, but original had no character here
+                    continue;
+                }
+                
+                if (colIdx < originalCols.length) {
+                    const col = originalCols[colIdx];
+                    const coord = row + col;
+                    
+                    if (reverseBowMap[coord]) {
+                        decrypted += reverseBowMap[coord];
+                    } else {
+                        decrypted += '?';
+                    }
+                    colIdx++;
+                }
+            }
+            
+            document.getElementById('queryOutput').textContent = decrypted;
+        }
+
+        // LUMINARIA PROGRAM
+        function processMatches() {
+            const matches = document.getElementById('matches').value.toUpperCase();
+            const tongue = matches.replace(/[^A-Z]/g, '').replace(/U/g, 'V');
+            const output = document.getElementById('luminaria-output');
+            
+            const alphabet = 'ABCDEFGHIJKLMNOPQRSTVWXYZ';
+            const uniqueChars = [];
+            for (let char of tongue) {
+                if (!uniqueChars.includes(char)) {
+                    uniqueChars.push(char);
+                }
+            }
+            
+            const remaining = [];
+            for (let char of alphabet) {
+                if (!uniqueChars.includes(char)) {
+                    remaining.push(char);
+                }
+            }
+            
+            const grid = [...uniqueChars, ...remaining];
+            
+            let table = '<h3>Paper Bags</h3><table>';
+            table += '<tr><td class="axis"></td>';
+            for (let i = 1; i <= 5; i++) {
+                table += `<td class="axis">${i}</td>`;
+            }
+            table += '</tr>';
+            
+            paperBagsMap = {};
+            for (let row = 1; row <= 5; row++) {
+                table += `<tr><td class="axis">${row}</td>`;
+                for (let col = 1; col <= 5; col++) {
+                    const idx = (row - 1) * 5 + (col - 1);
+                    table += `<td>${grid[idx] || ''}</td>`;
+                    if (grid[idx]) {
+                        paperBagsMap[grid[idx]] = String(row) + String(col);
+                    }
+                }
+                table += '</tr>';
+            }
+            table += '</table>';
+            output.innerHTML = table;
+            
+            output.innerHTML += `
+                <div class="input-group">
+                    <label for="candles">Candles:</label>
+                    <input type="text" id="candles" autocomplete="off">
+                    <button onclick="light()">Light</button>
+                </div>
+                <div id="grace-output"></div>
+            `;
+            
+            document.getElementById('candles').addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    light();
+                }
+            });
+        }
+
+        function light() {
+            const candles = document.getElementById('candles').value.toUpperCase();
+            const litCandles = candles.replace(/[^A-Z]/g, '').replace(/U/g, 'V');
+            
+            let graceTable = '<h3>Grace</h3><table>';
+            graceTable += '<tr>';
+            for (let char of litCandles) {
+                graceTable += `<td>${char}</td>`;
+            }
+            graceTable += '</tr>';
+            
+            graceTable += '<tr>';
+            const rowCoords = [];
+            for (let char of litCandles) {
+                const coord = paperBagsMap[char] || '00';
+                const row = coord[0];
+                rowCoords.push(row);
+                graceTable += `<td>${row}</td>`;
+            }
+            graceTable += '</tr>';
+            
+            graceTable += '<tr>';
+            const colCoords = [];
+            for (let char of litCandles) {
+                const coord = paperBagsMap[char] || '00';
+                const col = coord[1];
+                colCoords.push(col);
+                graceTable += `<td>${col}</td>`;
+            }
+            graceTable += '</tr>';
+            
+            graceTable += '</table>';
+            
+            const sand1 = rowCoords.join('');
+            const sand2 = colCoords.join('');
+            const dirtySand = sand1 + sand2;
+            
+            graceTable += `
+                <div class="input-group">
+                    <label>Dirty Sand:</label>
+                    <div class="output-box">${dirtySand}</div>
+                </div>
+            `;
+            
+            document.getElementById('grace-output').innerHTML = graceTable;
+        }
+
+        // BAYBERRY PROGRAM
+        function processReindeer() {
+            const reindeer = document.getElementById('reindeer').value;
+            const output = document.getElementById('bayberry-output');
+            
+            const hasLetters = /[A-Za-z]/.test(reindeer);
+            const hasNumbers = /[0-9]/.test(reindeer);
+            
+            if (hasLetters && !hasNumbers) {
+                processHark(reindeer, output);
+            } else if (hasNumbers && !hasLetters) {
+                processYuletide(reindeer, output);
+            } else {
+                output.innerHTML = '<div class="message error">Please enter either letters or numbers, not both</div>';
+            }
+        }
+
+        function processHark(reindeer, output) {
+            const dasher = reindeer.toUpperCase().replace(/[^A-Z]/g, '');
+            
+            const alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+            constellationTable = [];
+            
+            let table = '<h3>Constellation</h3><table>';
+            table += '<tr><td class="axis"></td>';
+            for (let char of alphabet) {
+                table += `<td class="axis">${char}</td>`;
+            }
+            table += '</tr>';
+            
+            for (let i = 0; i < 26; i++) {
+                const row = [];
+                table += `<tr><td class="axis">${alphabet[i]}</td>`;
+                for (let j = 0; j < 26; j++) {
+                    const char = alphabet[(i + j) % 26];
+                    row.push(char);
+                    table += `<td>${char}</td>`;
+                }
+                table += '</tr>';
+                constellationTable.push(row);
+            }
+            table += '</table>';
+            
+            output.innerHTML = table;
+            
+            output.innerHTML += `
+                <div class="input-group">
+                    <label for="bells">Bells:</label>
+                    <input type="text" id="bells" autocomplete="off">
+                    <button onclick="jingle('${dasher}')">Jingle</button>
+                </div>
+                <div id="sleigh-output"></div>
+            `;
+            
+            document.getElementById('bells').addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    jingle(dasher);
+                }
+            });
+        }
+
+        function jingle(dasher) {
+            const bells = document.getElementById('bells').value.toUpperCase();
+            const jingleBells = bells.replace(/[^A-Z]/g, '');
+            
+            let sleighTable = '<h3>Sleigh</h3><table>';
+            sleighTable += '<tr>';
+            for (let char of jingleBells) {
+                sleighTable += `<td>${char}</td>`;
+            }
+            sleighTable += '</tr>';
+            
+            sleighTable += '<tr>';
+            const dasherRepeated = [];
+            for (let i = 0; i < jingleBells.length; i++) {
+                const char = dasher[i % dasher.length];
+                dasherRepeated.push(char);
+                sleighTable += `<td>${char}</td>`;
+            }
+            sleighTable += '</tr>';
+            
+            sleighTable += '<tr>';
+            const alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+            const result = [];
+            for (let i = 0; i < jingleBells.length; i++) {
+                const rowChar = jingleBells[i];
+                const colChar = dasherRepeated[i];
+                
+                const rowIdx = alphabet.indexOf(rowChar);
+                const colIdx = constellationTable[rowIdx].indexOf(colChar);
+                const resultChar = alphabet[colIdx];
+                
+                result.push(resultChar);
+                sleighTable += `<td>${resultChar}</td>`;
+            }
+            sleighTable += '</tr>';
+            
+            sleighTable += '</table>';
+            
+            let resultStr = '';
+            for (let i = 0; i < result.length; i++) {
+                resultStr += result[i];
+                if ((i + 1) % 5 === 0 && i !== result.length - 1) {
+                    resultStr += ' ';
+                }
+            }
+            
+            sleighTable += `
+                <div class="input-group">
+                    <label>Milk and Carrots:</label>
+                    <div class="output-box">${resultStr}</div>
+                </div>
+            `;
+            
+            document.getElementById('sleigh-output').innerHTML = sleighTable;
+        }
+
+        function processYuletide(reindeer, output) {
+            const key = reindeer.replace(/[^0-9]/g, '');
+            
+            if (!key) {
+                output.innerHTML = '<div class="message error">No numbers found</div>';
+                return;
+            }
+            
+            output.innerHTML = `
+                <h3>Yuletide</h3>
+                <div class="input-group">
+                    <label>Key: ${key}</label>
+                </div>
+                <div class="input-group">
+                    <label for="prancer">Prancer:</label>
+                    <input type="text" id="prancer" autocomplete="off">
+                    <button onclick="gronsfeld('${key}')">Shift</button>
+                </div>
+                <div id="yuletide-output"></div>
+            `;
+            
+            document.getElementById('prancer').addEventListener('keypress', function(e) {
+                if (e.key === 'Enter') {
+                    gronsfeld(key);
+                }
+            });
+        }
+
+        function gronsfeld(key) {
+            const prancer = document.getElementById('prancer').value.toUpperCase();
+            const plaintext = prancer.replace(/[^A-Z]/g, '');
+            
+            const alphabet = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ';
+            let result = '';
+            
+            for (let i = 0; i < plaintext.length; i++) {
+                const char = plaintext[i];
+                const shift = parseInt(key[i % key.length]);
+                const charIdx = alphabet.indexOf(char);
+                const newIdx = (charIdx + shift) % 26;
+                result += alphabet[newIdx];
+            }
+            
+            document.getElementById('yuletide-output').innerHTML = `
+                <div class="input-group">
+                    <label>Lise Carfy:</label>
+                    <div class="output-box">${result}</div>
+                </div>
+            `;
+        }
+
+        window.onclick = function(event) {
+            const modal = document.getElementById('queryModal');
+            if (event.target === modal) {
+                closeQueryModal();
+            }
+        }
+    </script>
+</body>
+</html>
